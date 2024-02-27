@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصخور الرسوبية</title>
+    <link rel="icon" href="icon.png">
+</head>
+<body>
+
+    <style>
+        /* استيراد الخطوط وتحديد الخط الأساسي */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    
+        /* إعدادات الصفحة الرئيسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+    
+        html {
+            font-size: 10px; /* تعيين حجم الخط الأساسي */
+        }
+    
+        body {
+            font-family: "Roboto", "Arial", sans-serif; /* تعيين الخط الرئيسي */
+            position: relative;
+        }
+        #videoContainer {
+        text-align: center;
+    }
+    #showVideoButton {
+        margin-top: 20px; /* قم بضبط الهوامش حسب الحاجة */
+    }
+        /* تصميم الهيدر */
+        header {
+            background-color: rgba(135, 127, 33, 0.808);
+            width: 100%;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 50px;
+        }
+    
+        /* تصميم الشعار */
+        .logo {
+            text-decoration: none;
+            color: rgb(231, 227, 221);
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2em;
+        }
+    
+        /* تصميم الأقسام */
+        section {
+            padding: 50px 0px;
+        }
+    
+        /* تصميم القسم الرئيسي */
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: url("eu.jpeg") no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    
+        /* تصميم الأزرار الرئيسية */
+        .main-btn1 {
+            color: rgb(210, 211, 200);
+            background-color: rgb(16, 15, 61);
+            font-size: 1.7em;
+            font-weight: 900;
+            padding: 0.9375em 2.1875em;
+            letter-spacing: 1px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            margin-top: 40px;
+            margin-left: 15%;
+            transition: 0.7s ease;
+        }
+    
+        .main-btn1:hover {
+            background-color: rgb(179, 201, 182);
+            color: rgba(29, 9, 211, 0.9);
+            transform: scale(1.1);
+            box-shadow: 0 15px 45px rgba(1 1 1 / 35%);
+        }
+    
+        /* تصميم النصوص الإضافية */
+
+    
+        /* تصميم البيانات */
+        .info {
+            background-color: rgb(196, 120, 22);
+            border-radius: 30px;
+            background-position: center;
+            opacity: 70%;
+            text-align: center;
+        }
+    
+        .info h3 {
+            color: rgb(18, 61, 31);
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .info span {
+            display: inline-block;
+            margin-top: 10px;
+            color: rgb(50, 68, 107);
+            font-size: 3em;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+        }
+    
+        /* تصميم تأثير الرياح */
+        #windEffect {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: #00f;
+    border-radius: 50%;
+    display: none;
+    pointer-events: none;
+    animation-name: rock2;
+    animation-duration: 7s;
+    z-index: 1100;
+    opacity: 0%;
+    margin-left: -200px;
+    transform: translateY(200px); /* تحريك العنصر 10 بكسل إلى الأسفل يمكن تعديل هذا الرقم حسب الحاجة */
+
+}
+
+@keyframes rock2 {
+    0% {
+        opacity: 100%;
+    }
+    40% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 0%;
+    }
+}
+
+    
+        /* تصميم الأزرار الفرعية */
+        .bt-btn1 {
+            background-color: black;
+            color: blanchedalmond;
+            letter-spacing: 1px;
+            border-radius: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            left: 0px;
+            transition: 0.7s ease;
+        }
+    
+        .bt-btn1:hover {
+            transform: scale(1.1);
+        }
+    
+        /* تصميم مجموعة الأزرار */
+        .bn {
+            display: flex;
+            flex-wrap: unset;
+            gap: 0;
+            padding-right: 30px;
+        }
+    
+        /* تصميم الزرار الأول من مجموعة الأزرار */
+        .bt1-btn1 {
+            background-color: rgb(156, 114, 35);
+            color: #000;
+            padding: 9px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 15px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            transition: 0.3s ease;
+        }
+    
+        .bt1-btn1:hover {
+            color: #c3c009 !important;
+            outline-color: rgba(71, 126, 232, 0);
+            outline-offset: 150px;
+        }
+    
+        /* تصميم الزرار الثاني من مجموعة الأزرار */
+        .bt1-btn2 {
+            background-color: rgb(156, 114, 35);
+            color: #000;
+            padding: 9px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 15px;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            transition: 0.3s ease;
+        }
+    
+        .bt1-btn2:hover {
+            color: #c3c009 !important;
+            outline-color: rgba(71, 126, 232, 0);
+            outline-offset: 150px;
+        }
+    
+        /* تصميم حاوية الفيديو */
+        .video-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            margin-left: 20px;
+            
+        }
+    
+        /* تصميم الفيديو */
+        .vi1 {
+            width: 420px;
+            height: auto;
+            margin-top: 105px;
+            position: relative;
+            z-index: 1;
+        }
+    
+        @media only screen and (max-width: 600px) {
+    * {
+        margin-right: 0 !important; /* إزالة الهامش الأيمن لجميع العناصر */
+    }
+    .vi1 {
+        width: 180%; /* تقليل عرض حاوية الفيديو ليكون أقل بعض الشيء من عرض الشاشة */
+        margin-top: 20px; /* يمكنك ضبط الهامش حسب الحاجة */
+        margin-left: 0px;
+        margin-right:0px ;
+    }
+
+
+    .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+        width: 200px;
+        margin-left: 0;
+        object-fit: cover;
+
+    }
+    .bn1{
+        margin-top: -40px;
+    }
+
+    .vi1 video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bt-btn1 {
+        background-color: black;
+        color: blanchedalmond;
+        letter-spacing: 1px;
+        border-radius: 15px;
+        padding: 10px 20px;
+        margin-bottom: 40px;
+        font-size: 16px;
+        left: 0px;
+        transition: 0.7s ease;
+    }
+    #videooo{
+        width: 300px;
+    }
+    
+
+    }
+
+
+
+
+        
+          
+    
+           
+        
+    
+        /* تصميم القسم الخاص بالتساقط */
+        .Precipitation {
+            background-color: #fff;
+            width: 100%;
+            min-height: 100vh;
+        }
+    
+        /* تصميم عنوان القسم */
+        .title {
+            display: flex;
+            justify-content: center;
+            color: rgb(67, 196, 201);
+            font-size: 2.2em;
+            margin-bottom: 90px;
+            margin-top: 100px;
+        }
+    
+        /* تصميم مجموعة الأزرار */
+        .bn {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+    
+        /* تصميم مجموعة الأزرار الإضافية */
+        .bn1 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            position: absolute;
+            z-index: 2;
+        }
+    
+        /* تصميم الفيديوهات */
+        .v12 {
+            width: 50%;
+            height: 100%;
+        }
+    
+        /* تصميم الفيديوهات عند الشاشات الصغيرة */
+        @media only screen and (max-width: 600px) {
+            .v12 {
+                width: 90%;
+                height: auto;
+                margin-top: 20px;
+            }
+        }
+    
+        /* تصميم بطاقة المشاريع */
+        .projects-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    
+        /* إخفاء الفيديوهات بشكل افتراضي */
+        #myVideo2,
+        #myVideoz1,
+        #myVideoz3 {
+            display: none;
+        }
+    
+    </style>
+    
+<header>
+    <a href="#" class="logo">الصخور الرسوبية</a>
+</header>
+<section class="main">
+    <button id="showText1" class="main-btn1">الصخور مكنيكية</button>
+    <button id="showText2" class="main-btn1">الصخور لكيميائية</button>
+    <button id="showText3" class="main-btn1">الصخور العضوية</button>
+   
+</section>
+<section>
+<!-- إضافة عنصر div لعرض الفيديو -->
+<div id="videoContainer" style="display: none;">
+    <video id="videooo" width="440" height="460">
+        <source src="xza.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+</section>
+<!-- إضافة زر لعرض الفيديو -->
+<button id="showVideoButton" class="bt-btn1">تشغيل/إيقاف الفيديو</button>
+
+
+<section class="w1">
+    
+    
+    <div class="video-container">
+        <div class="vi1">
+            <button id="startButton" class="bt-btn1">تجوية مكنيكية</button>
+            <div class="bn1">
+                <button id="playButton" style="display: none;" class="bt1-btn2">رياح </button>
+                <button id="startButton1" onclick="generateWind11()" style="display: none;" class="bt1-btn2">امطار </button>
+               </div>
+      <video id="myVideo" width="440" height="460">
+          <source src="d1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
+     
+    <div class="vi1">
+        <button id="q1" class="bt-btn1">تجوية كيميائية</button>
+      <video id="myVideo1" width="440" height="460">
+          <source src="v1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
+
+      <div class="vi1">
+        <button id="q2" class="bt-btn1"> تجوية عضوية</button>
+      <video id="myVideo3" width="440" height="460">
+          <source src="x1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
+    </div>
+    <div id="windEffect"><img src="sa1.png"></div>
+</section>
+
+
+<section id="Precipitation" class="Precipitation">
+    <h3 class="title">  Explain / شرح</h3>
+    <div class="bn">
+        <button id="angleButton"  class="bt1-btn1"> البريشيا</button>
+        <button id="angleButton1" class="bt1-btn1"> الكونجلوميرات</button>
+        <button id="angleButton2"  class="bt1-btn1">الصواعد والهوابط</button>
+
+        <button id="t1"  class="bt1-btn1">المتبخرات </button>
+        <button id="f5" class="bt1-btn1"> الاحجار السيلسية</button>
+        <button id="j1"  class="bt1-btn1">  الصخور الكربوناتية</button>
+        <button id="jj5" class="bt1-btn1">   الصخور الرسوبية العضوية </button>
+
+
+     </div>
+
+     <div class="projects-card">
+        <video id="myVideo2" class="v12">
+            <source src="z2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-------------------------------------->
+        <video id="myVideoz1" class="v12">
+         <source src="z1.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+     <video id="myVideoz3" class="v12">
+         <source src="z3.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+
+
+
+     <video id="myVideot1" style="display: none;" class="v12">
+         <source src="t1.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+     <video id="myVideof5" style="display: none;" class="v12">
+         <source src="f5.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+     <video id="myVideoj1" style="display: none;" class="v12">
+         <source src="j1.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+     <video id="myVideott3" style="display: none;" class="v12">
+         <source src="tt3.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+
+     <video id="myVideojj4" style="display: none;" class="v12">
+         <source src="jj5.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+     </video>
+     </div>
+
+
+</section>
+
+
+
+
+
+
+
+<!------------------------------------->
+<!------------------------------------->
+<!------------------------------------->
+
+<script>
+   // الحصول على عنصر زر عرض الفيديو
+  // الحصول على عنصر زر عرض الفيديو
+  var showVideoButton = document.getElementById('showVideoButton');
+
+// الحصول على عنصر الفيديو
+var video = document.getElementById('videooo');
+
+// الحصول على عنصر عرض الفيديو
+var videoContainer = document.getElementById('videoContainer');
+
+// إضافة الحدث للزر لعرض الفيديو عند النقر عليه
+showVideoButton.addEventListener('click', function () {
+    // إظهار عنصر عرض الفيديو
+    videoContainer.style.display = 'block';
+    // فحص ما إذا كان الفيديو قيد التشغيل
+    if (video.paused) {
+        // تشغيل الفيديو إذا كان متوقفًا
+        video.play();
+    } else {
+        // إيقاف الفيديو إذا كان قيد التشغيل
+        video.pause();
+    }
+});
+
+
+    // تشغيل / إيقاف الفيديو عند النقر على الزر
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("j1");
+      var myVideo2 = document.getElementById("myVideoj1");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = "الصخور الكربوناتية ";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الآخر
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("jj5");
+      var myVideo2 = document.getElementById("myVideojj4");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = " الصخور الرسوبية العضوية";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    //       -------------------------------------------- 
+
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الثالث
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("t1");
+      var myVideo2 = document.getElementById("myVideot1");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = " المتبخرات ";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الرابع
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("f5");
+      var myVideo2 = document.getElementById("myVideof5");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = "  الاحجر السلسية";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الخامس
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("tt3");
+      var myVideo2 = document.getElementById("myVideott3");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = " حجر الكوكينا";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // دالة لتوليد تأثير الرياح
+    function generateWind11() {
+      var windEffect = document.getElementById('windEffect');
+      var button = document.getElementById('startButton1');
+    
+      // تحديد موقع الرياح من بداية الشاشة على الجهة اليسرى
+      var startX = 0;
+      var centerY = window.innerHeight / 1;
+    
+      // إظهار التأثير في الموقع المحدد
+      windEffect.style.left = startX + 'px';
+      windEffect.style.top = centerY + 'px';
+      windEffect.style.display = 'block';
+    
+      // المسافة المطلوبة للإخفاء
+      var hideDistance = window.innerWidth / 1.3;
+    
+      // إعطاء تأثير الرياح
+      var windInterval = setInterval(function () {
+          windEffect.style.left = (parseFloat(windEffect.style.left) + 1) + 'px'; // حركة إلى اليمين
+          if (parseFloat(windEffect.style.left) >= hideDistance) {
+              // إخفاء التأثير بعد الوصول إلى المسافة المحددة
+              clearInterval(windInterval);
+              windEffect.style.display = 'none';
+          }
+      }, 10);
+    }
+    
+    // تحديث النصوص عند النقر على الأزرار
+    document.getElementById('showText1').addEventListener('click', function () {
+      document.getElementById('text1').style.display = 'block';
+      document.getElementById('text2').style.display = 'none';
+      document.getElementById('text3').style.display = 'none';
+    });
+    
+    document.getElementById('showText2').addEventListener('click', function () {
+      document.getElementById('text1').style.display = 'none';
+      document.getElementById('text2').style.display = 'block';
+      document.getElementById('text3').style.display = 'none';
+    });
+    
+    document.getElementById('showText3').addEventListener('click', function () {
+      document.getElementById('text1').style.display = 'none';
+      document.getElementById('text2').style.display = 'none';
+      document.getElementById('text3').style.display = 'block';
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر
+    document.addEventListener("DOMContentLoaded", function() {
+      var q1 = document.getElementById("q1");
+      var myVideo1 = document.getElementById("myVideo1");
+      var playButton2 = document.getElementById("playButton2");
+    
+      q1.addEventListener("click", function() {
+          if (myVideo1.paused) {
+              myVideo1.play();
+              q1.textContent = "اشعة";
+              playButton2.style.display = 'block';
+          } else {
+              myVideo1.pause();
+              q1.textContent = "تجوية كيميائية";
+              playButton2.style.display = 'block';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الآخر
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("q2");
+      var myVideo3 = document.getElementById("myVideo3");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo3.paused) {
+              myVideo3.play();
+              q2.textContent = "تمهل";
+          } else {
+              myVideo3.pause();
+              q2.textContent = "تجوية عضوية ";
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الزاوي
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("angleButton");
+      var myVideo2 = document.getElementById("myVideoz1");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = "  البريشا";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الثاني
+    document.addEventListener("DOMContentLoaded", function() {
+      var z2 = document.getElementById("angleButton1");
+      var myVideo2 = document.getElementById("myVideo2");
+    
+      z2.addEventListener("click", function() {    //هاد
+          if (myVideo2.paused) {
+              myVideo2.play();
+              z2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              z2.textContent = " الكونجلوميرات ";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // تشغيل / إيقاف الفيديو عند النقر على الزر الثالث
+    document.addEventListener("DOMContentLoaded", function() {
+      var q2 = document.getElementById("angleButton2");
+      var myVideo2 = document.getElementById("myVideoz3");
+    
+      q2.addEventListener("click", function() {
+          if (myVideo2.paused) {
+              myVideo2.play();
+              q2.textContent = "انتظر";
+              myVideo2.style.display = 'block';
+          } else {
+              myVideo2.pause();
+              q2.textContent = " الصواعق والهوابط";
+              myVideo2.style.display = 'none';
+          }
+      });
+    });
+    
+    // إظهار أزرار التشغيل عند النقر على زر الترسيب
+    document.getElementById('startButton').addEventListener('click', function () {
+            // إظهار زر حدبية الزواية وزر دائرية الشكل
+            document.getElementById('playButton').style.display = 'block';
+            document.getElementById('startButton1').style.display = 'block';
+    
+            // يمكنك إضافة المزيد من الأكواد هنا إذا كنت بحاجة إلى تحديثات إضافية لزر "الترسيب"
+        });
+    
+    // إخفاء الفيديو عندما ينتهي تشغيله
+    document.addEventListener("DOMContentLoaded", function() {
+            var myVideo2 = document.getElementById("myVideo2");
+    
+            myVideo2.addEventListener("ended", function() {
+                // عند انتهاء تشغيل الفيديو، قم بإخفائه
+                myVideo2.style.display = 'none';
+            });
+        });
+        
+    // تشغيل / إيقاف الفيديو الأساسي
+    document.addEventListener("DOMContentLoaded", function() {
+            var playButton = document.getElementById("playButton");
+            var myVideo = document.getElementById("myVideo");
+    
+            playButton.addEventListener("click", function() {
+                if (myVideo.paused) {
+                    myVideo.play();
+                } else {
+                    myVideo.pause();
+                }
+            });
+        });
+    
+    // تشغيل / إيقاف الفيديو الخلفي
+    document.addEventListener("DOMContentLoaded", function() {
+        var playBackgroundVideoButton = document.getElementById("playBackgroundVideo");
+        var backgroundVideo = document.getElementById("xx1");
+    
+        playBackgroundVideoButton.addEventListener("click", function() {
+            if (backgroundVideo.paused) {
+                backgroundVideo.play();
+                playBackgroundVideoButton.textContent = "إيقاف الفيديو الخلفي";
+            } else {
+                backgroundVideo.pause();
+                playBackgroundVideoButton.textContent = "تشغيل الفيديو الخلفي";
+            }
+        });
+    });
+    
+    </script>
+    
+
+
+</body>
+</html>
