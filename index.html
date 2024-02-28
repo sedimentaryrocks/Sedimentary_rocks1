@@ -369,9 +369,11 @@
     <a href="#" class="logo">الصخور الرسوبية</a>
 </header>
 <section class="main">
-    <button id="showText1" class="main-btn1">الصخور الميكانيكيه </button>
-    <button id="showText2" class="main-btn1">الصخور الكيميائية</button>
-    <button id="showText3" class="main-btn1">الصخور العضوية</button>
+    <button id="showText1" class="main-btn1" data-sound="1.mp3">الصخور الميكانيكيه</button>
+    <button id="showText2" class="main-btn1" data-sound="2.mp3">الصخور الكيميائية</button>
+    <button id="showText3" class="main-btn1" data-sound="3.mp3">الصخور العضوية</button>
+    
+    <audio id="audio"></audio>
    
 </section>
 <section>
@@ -497,6 +499,41 @@
 <!------------------------------------->
 
 <script>
+// تحديد الأزرار
+var buttons = document.querySelectorAll(".main-btn1");
+
+// تحديد الصوت
+var audio = document.getElementById("audio");
+
+// تتبع حالة التشغيل لكل زر
+var isPlaying = {
+  "1.mp3": false,
+  "2.mp3": false,
+  "3.mp3": false
+};
+
+// إضافة حدث النقر لكل زر
+buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        var soundPath = this.getAttribute("data-sound");
+        toggleSound(soundPath);
+    });
+});
+
+// وظيفة لتشغيل أو إيقاف الصوت
+function toggleSound(soundPath) {
+    if (isPlaying[soundPath]) {
+        audio.pause();
+        isPlaying[soundPath] = false;
+    } else {
+        audio.src = soundPath;
+        audio.play();
+        isPlaying[soundPath] = true;
+    }
+}
+
+
+    
    // الحصول على عنصر زر عرض الفيديو
   // الحصول على عنصر زر عرض الفيديو
   var showVideoButton = document.getElementById('showVideoButton');
